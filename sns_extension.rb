@@ -1,16 +1,9 @@
-# TODO: Remove directory config entry since Rack cache does not use it.
-  # TEXT_ASSET_CACHE_DIR stores directory where text assets will be cached
-  # (relative to RAILS_ROOT). The default value is: "text_asset_cache"
-  #
-  # NOTE: If you change this, don't forget to remove any previous cache folder
-  TEXT_ASSET_CACHE_DIR = "text_asset_cache"
-
 require_dependency 'application_controller'
 require 'ostruct'
 
 
 class SnsExtension < Radiant::Extension
-  version "0.8.0"
+  version "0.8.2"
   extension_name "Styles 'n Scripts"
   description "Adds CSS and JS file management to Radiant"
   url "http://github.com/radiant/radiant-sns-extension"
