@@ -43,8 +43,7 @@ class SnsExtension < Radiant::Extension
 
 
   def deactivate
-    admin.tabs.remove "CSS"
-    admin.tabs.remove "JS"
+
   end
 
 
