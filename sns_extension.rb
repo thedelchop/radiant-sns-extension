@@ -22,9 +22,16 @@ class SnsExtension < Radiant::Extension
 
 
   def activate
-    admin.tabs.add "CSS", "/admin/css", :after => "Layouts", :visibility => [:admin, :developer]
-    admin.tabs.add "JS", "/admin/js", :after => "CSS", :visibility => [:admin, :developer]
-
+    if self.respond_to?(:tab)
+      tab "Design" do
+        add_item 'CSS', '/admin/css'
+        add_item 'JS', '/admin/js'
+      end
+    else
+      admin.tabs.add "CSS", "/admin/css", :after => "Layouts", :visibility => [:admin, :developer]
+      admin.tabs.add "JS", "/admin/js", :after => "CSS", :visibility => [:admin, :developer]
+    end
+    
     # Include my mixins (extending PageTags and SiteController)
     Page.send :include, Sns::PageTags
     SiteController.send :include, Sns::SiteControllerExt
@@ -35,8 +42,6 @@ class SnsExtension < Radiant::Extension
     admin.text_assets = load_default_text_assets_regions
 
     # Add Javascript and Stylesheet to UserActionObserver (used for created_by and updated_by)
-    observables = UserActionObserver.instance.observed_classes | [Stylesheet, Javascript]
-    UserActionObserver.send :observe, observables
     UserActionObserver.instance.send :add_observer!, Stylesheet
     UserActionObserver.instance.send :add_observer!, Javascript
   end
