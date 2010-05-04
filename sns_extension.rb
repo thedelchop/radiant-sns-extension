@@ -3,33 +3,15 @@ require 'ostruct'
 
 
 class SnsExtension < Radiant::Extension
-  version "0.8.2"
+  version "#{File.read(File.expand_path(File.dirname(__FILE__)) + '/VERSION')}"
   extension_name "Styles 'n Scripts"
   description "Adds CSS and JS file management to Radiant"
   url "http://github.com/radiant/radiant-sns-extension"
 
-
-  define_routes do |map|
-    map.namespace :admin,
-                  :controller => 'text_assets',
-                  :member => { :remove => :get },
-                  :collection => { :upload => :post } do |admin|
-      
-      admin.resources :stylesheets, :as => 'css', :requirements => { :asset_type => 'stylesheet'}
-      admin.resources :javascripts, :as => 'js', :requirements => { :asset_type => 'javascript' }
-    end
-  end
-
-
   def activate
-    if self.respond_to?(:tab)
-      tab "Design" do
-        add_item 'CSS', '/admin/css'
-        add_item 'JS', '/admin/js'
-      end
-    else
-      admin.tabs.add "CSS", "/admin/css", :after => "Layouts", :visibility => [:admin, :developer]
-      admin.tabs.add "JS", "/admin/js", :after => "CSS", :visibility => [:admin, :developer]
+    tab "Design" do
+      add_item 'CSS', '/admin/css'
+      add_item 'JS', '/admin/js'
     end
     
     # Include my mixins (extending PageTags and SiteController)
