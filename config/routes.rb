@@ -4,7 +4,7 @@ ActionController::Routing::Routes.draw do |map|
                   :member => { :remove => :get },
                   :collection => { :upload => :post } do |admin|
       
-      admin.resources :stylesheets, :as => 'css', :requirements => { :asset_type => 'stylesheet'}
-      admin.resources :javascripts, :as => 'js', :requirements => { :asset_type => 'javascript' }
+      admin.resources :stylesheets, :as => 'css', :requirements => { :asset_type => 'stylesheet'}, :conditions => {:upload => :post}
+      admin.resources :javascripts, :as => 'js', :requirements => { :asset_type => 'javascript' }, :conditions => {:upload => :post}
     end
 end
