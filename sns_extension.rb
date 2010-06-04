@@ -1,7 +1,6 @@
 require_dependency 'application_controller'
 require 'ostruct'
 
-
 class SnsExtension < Radiant::Extension
   version "#{File.read(File.expand_path(File.dirname(__FILE__)) + '/VERSION')}"
   extension_name "Styles 'n Scripts"
@@ -41,7 +40,7 @@ class SnsExtension < Radiant::Extension
     def load_default_text_assets_regions
       returning OpenStruct.new do |text_asset|
         text_asset.index = Radiant::AdminUI::RegionSet.new do |index|
-          index.top.concat %w{help_text}
+          index.top.concat %w{}
         end
         text_asset.edit = Radiant::AdminUI::RegionSet.new do |edit|
           edit.main.concat %w{edit_header edit_form}
