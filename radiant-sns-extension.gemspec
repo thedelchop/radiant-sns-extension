@@ -44,6 +44,7 @@ Gem::Specification.new do |s|
      "db/migrate/004_rename_text_asset_filename_and_dependency_list_columns.rb",
      "db/migrate/005_remove_text_asset_dependencies_table.rb",
      "db/migrate/20091021092157_add_name_class_name_index.rb",
+     "lib/radiant-sns-extension.rb",
      "lib/sns/config.rb",
      "lib/sns/page_tags.rb",
      "lib/sns/site_controller_ext.rb",
