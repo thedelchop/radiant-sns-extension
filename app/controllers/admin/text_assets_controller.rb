@@ -1,5 +1,5 @@
 class Admin::TextAssetsController < Admin::ResourceController
-
+  paginate_models
   only_allow_access_to :index, :new, :edit, :remove, :upload,
     :when => [:designer, :admin],
     :denied_url => { :controller => 'pages', :action => 'index' },
